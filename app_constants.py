@@ -50,9 +50,9 @@ input_lists = {
 input_sliders = {
 	'obj_yearConstructed': (1960, 2020, 1980),
 	'obj_livingSpace': (18, 300, 100),
-	'obj_lotArea': (0, 1000, 500),
+	'obj_lotArea': (0, 1000, 450),
 	'obj_noRooms': (1, 10, 4),
-	'obj_noParkSpaces': (0, 10, 2),	
+	'obj_noParkSpaces': (0, 10, 1),	
 }
 
 input_checks = {
