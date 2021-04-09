@@ -20,7 +20,7 @@ geo = pd.read_csv('./data/prod_geo.csv')
 
 #create UI objects
 st.sidebar.markdown('## Set characteristics:')
-geo_plz = st.sidebar.number_input('Postcode', format='%i', value=81549, max_value=99998)
+geo_plz = st.sidebar.number_input('Postcode', format='%i', value=63110, max_value=99998)
 obj_data = {}
 #obj_data['geo_plz'] = geo_plz
 for list_name, list_values in aconst.input_lists.items():
