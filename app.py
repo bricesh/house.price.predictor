@@ -4,6 +4,13 @@ import app_constants as aconst
 from shapash.utils.load_smartpredictor import load_smartpredictor
 import plotly.express as px
 
+st.set_page_config(
+	page_title="House Price Predictor App",
+	page_icon=":house:",
+	layout="wide",
+	initial_sidebar_state="expanded",
+)
+
 def roundup(x):
 	return x if x % 1000 == 0 else x + 1000 - x % 1000
 
