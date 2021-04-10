@@ -33,31 +33,31 @@ feature_dict = {
 	'new_apartment_permit_per_hab': 'New Aprt Permits per Habitant'}
 
 input_lists = {
-	'obj_buildingType': ['single_family_house', 'semidetached_house', 'multi_family_house',
+	'obj_buildingType': [['single_family_house', 'semidetached_house', 'multi_family_house',
 		'other_real_estate', 'mid_terrace_house', 'farmhouse', 'villa',
-		'end_terrace_house', 'special_real_estate', 'bungalow', 'castle_manor_house'],
-	'obj_heatingType': ['heat_pump', 'gas_heating', 'central_heating', 'floor_heating',
+		'end_terrace_house', 'special_real_estate', 'bungalow', 'castle_manor_house'], 8],
+	'obj_heatingType': [['heat_pump', 'gas_heating', 'central_heating', 'floor_heating',
 		'electric_heating', 'stove_heating', 'oil_heating',
 		'self_contained_central_heating', 'night_storage_heater', 'district_heating',
-		'combined_heat_and_power_plant', 'wood_pellet_heating', 'solar_heating'],
-	'obj_condition': ['first_time_use', 'well_kept', 'mint_condition', 'need_of_renovation',
+		'combined_heat_and_power_plant', 'wood_pellet_heating', 'solar_heating'], 0],
+	'obj_condition': [['first_time_use', 'well_kept', 'mint_condition', 'need_of_renovation',
 		'refurbished', 'fully_renovated', 'modernized', 'first_time_use_after_refurbishment',
-		'ripe_for_demolition'],
-	'obj_interiorQual': ['sophisticated', 'normal', 'simple', 'luxury'],
-	'obj_energyEfficiencyClass': ['A_PLUS', 'D', 'H', 'C', 'E', 'F', 'B', 'A', 'G'],	
+		'ripe_for_demolition'], 5],
+	'obj_interiorQual': [['sophisticated', 'normal', 'simple', 'luxury'], 1],
+	'obj_energyEfficiencyClass': [['A_PLUS', 'D', 'H', 'C', 'E', 'F', 'B', 'A', 'G'], 4],
 }
 
 input_sliders = {
-	'obj_yearConstructed': (1960, 2020, 1980),
-	'obj_livingSpace': (18, 300, 100),
-	'obj_lotArea': (0, 1000, 450),
-	'obj_noRooms': (1, 10, 4),
-	'obj_noParkSpaces': (0, 10, 1),	
+	'obj_yearConstructed': (1960, 2021, 1980),
+	'obj_livingSpace': (30, 300, 100),
+	'obj_lotArea': (0, 900, 450),
+	'obj_noRooms': (1, 8, 4),
+	'obj_noParkSpaces': (0, 5, 1),	
 }
 
 input_checks = {
-	'obj_courtage': (False, True),
-	'obj_cellar': (False, True)
+	'obj_courtage': False,
+	'obj_cellar': True
 }
 
 macro_cols = ['bus_count', 'food_count', 'gdp_per_hab',
