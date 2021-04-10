@@ -7,7 +7,6 @@ import plotly.express as px
 st.set_page_config(
 	page_title="House Price Predictor App",
 	page_icon=":house:",
-	#layout="wide",
 	initial_sidebar_state="expanded",
 )
 
@@ -31,33 +30,36 @@ predictor_load = load_smartpredictor('./model/predictor.pkl')
 osm_count, population, master, geo = import_files()
 
 #create UI objects
-st.sidebar.markdown('## Set characteristics:')
+st.sidebar.markdown('## Choose characteristics:')
 geo_plz = int(st.sidebar.text_input('Postcode', value=63110))
 obj_data = {}
 
 for list_name, list_values in aconst.input_lists.items():
-	list_values[0].sort()
-	obj_data[list_name] = st.sidebar.selectbox(aconst.feature_dict[list_name], list_values[0], index=list_values[1], key=list_name)
+	obj_data[list_name] = st.sidebar.selectbox(aconst.feature_dict[list_name], list(list_values[1].keys()), index=list_values[0], key=list_name)
 for slider_name, slider_values in aconst.input_sliders.items():
 	obj_data[slider_name] = st.sidebar.slider(aconst.feature_dict[slider_name], key=slider_name, min_value=slider_values[0], max_value=slider_values[1], value=slider_values[2])
 for check_name, check_value in aconst.input_checks.items():
 	obj_data[check_name] = st.sidebar.checkbox(aconst.feature_dict[check_name], value=check_value, key=check_name)
 
-obj_data['obj_energyEfficiencyClass'] = aconst.energy_rating_mapping[obj_data['obj_energyEfficiencyClass']]
-obj_data['obj_condition'] = aconst.condition_mapping[obj_data['obj_condition']]
-obj_data['obj_interiorQual'] = aconst.interior_condition_mapping[obj_data['obj_interiorQual']]
-	
+obj_data['obj_energyEfficiencyClass'] = aconst.energy_rating_mapping[aconst.obj_energyEfficiencyClass_mapping[obj_data['obj_energyEfficiencyClass']]]
+obj_data['obj_condition'] = aconst.condition_mapping[aconst.obj_condition_mapping[obj_data['obj_condition']]]
+obj_data['obj_interiorQual'] = aconst.interior_condition_mapping[aconst.obj_interiorQual_mapping[obj_data['obj_interiorQual']]]
+
+obj_data['obj_heatingType'] = aconst.obj_heatingType_mapping[obj_data['obj_heatingType']]
+obj_data['obj_buildingType'] = aconst.obj_buildingType_mapping[obj_data['obj_buildingType']]
+obj_data['obj_courtage'] = False
+
 macro_data = pd.merge(pd.merge(pd.merge(osm_count, master, on="geo_plz"), geo, on="geo_plz"), population, on="geo_plz")
 macro_data['density'] = macro_data['einwohner'] / (macro_data['area'] * 1000)
 macro_data = macro_data[macro_data['geo_plz'] == geo_plz][aconst.macro_cols].to_dict(orient='records')[0]
 data_to_predict = {**obj_data, **macro_data}
+print(data_to_predict)
 predictor_load.add_input(x=data_to_predict)
 
 detailed_contributions = predictor_load.detail_contributions()
 price_pred = roundup(int(detailed_contributions.iloc[0,0] * aconst.HOUSE_PRICE_INDEX))
 min_price_pred = price_pred - 85000
 max_price_pred = price_pred + 85000
-
 
 cols = st.beta_columns([1,1,1])
 with cols[0]:
