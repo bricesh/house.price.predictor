@@ -30,21 +30,76 @@ feature_dict = {
 	'ppl_per_building': 'Habitants per Building',
 	'highrise_factor': 'High Rise Factor',
 	'distance': 'Distance to Closest Large City',
-	'new_apartment_permit_per_hab': 'New Aprt Permits per Habitant'}
+	'new_apartment_permit_per_hab': 'New Aprt Permits per Habitant'
+}
+
+obj_buildingType_mapping = {
+	'Bungalow': 'bungalow',
+	'Castle/Manor': 'castle_manor_house',
+	'End Terrace House': 'end_terrace_house',
+	'Farmhouse': 'farmhouse',
+	'Middle Terrace House': 'mid_terrace_house',
+	'Multi-family House': 'multi_family_house',
+	'Other': 'other_real_estate',
+	'Semidetached House': 'semidetached_house',
+	'Single Family House': 'single_family_house',
+	'Special Real Estate': 'special_real_estate',
+	'Villa': 'villa',
+}
+
+obj_energyEfficiencyClass_mapping = {
+	'A+': 'A_PLUS',
+	'A': 'A',
+	'B': 'B',
+	'C': 'C',
+	'D': 'D',
+	'E': 'E',
+	'F': 'F',
+	'G': 'G',
+	'H': 'H',
+}
+
+obj_interiorQual_mapping = {
+	'Luxury': 'luxurious',
+	'Normal': 'normal',
+	'Simple': 'simple',
+	'Sophisticated': 'sophisticated',
+}
+
+obj_condition_mapping = {
+	'First Time Use': 'first_time_use',
+	'First Time Use (after refurbishment)': 'first_time_use_after_refurbishment',
+	'Fully Renovated': 'fully_renovated',
+	'In Need of Renovation': 'need_of_renovation',
+	'Mint Condition': 'mint_condition',
+	'Modernised': 'modernized',
+	'Refurbished': 'refurbished',
+	'Ripe for Demolition': 'ripe_for_demolition',
+	'Well Kept': 'well_kept',
+}
+
+obj_heatingType_mapping = {
+	'Heat Pump': 'heat_pump',
+	'Gas': 'gas_heating',
+	'Central': 'central_heating',
+	'Floor': 'floor_heating',
+	'Electric': 'electric_heating',
+	'Stove': 'stove_heating',
+	'Oil': 'oil_heating',
+	'Self Contained Central Heating': 'self_contained_central_heating',
+	'Night Storage': 'night_storage_heater',
+	'District': 'district_heating',
+	'Combined Heat and Power Plant': 'combined_heat_and_power_plant',
+	'Wood Pellet': 'wood_pellet_heating',
+	'Solar': 'solar_heating',
+}
 
 input_lists = {
-	'obj_buildingType': [['single_family_house', 'semidetached_house', 'multi_family_house',
-		'other_real_estate', 'mid_terrace_house', 'farmhouse', 'villa',
-		'end_terrace_house', 'special_real_estate', 'bungalow', 'castle_manor_house'], 8],
-	'obj_heatingType': [['heat_pump', 'gas_heating', 'central_heating', 'floor_heating',
-		'electric_heating', 'stove_heating', 'oil_heating',
-		'self_contained_central_heating', 'night_storage_heater', 'district_heating',
-		'combined_heat_and_power_plant', 'wood_pellet_heating', 'solar_heating'], 0],
-	'obj_condition': [['first_time_use', 'well_kept', 'mint_condition', 'need_of_renovation',
-		'refurbished', 'fully_renovated', 'modernized', 'first_time_use_after_refurbishment',
-		'ripe_for_demolition'], 5],
-	'obj_interiorQual': [['sophisticated', 'normal', 'simple', 'luxury'], 1],
-	'obj_energyEfficiencyClass': [['A_PLUS', 'D', 'H', 'C', 'E', 'F', 'B', 'A', 'G'], 4],
+	'obj_buildingType': [8, obj_buildingType_mapping],
+	'obj_heatingType': [2, obj_heatingType_mapping],
+	'obj_condition': [3, obj_condition_mapping],
+	'obj_interiorQual': [1, obj_interiorQual_mapping],
+	'obj_energyEfficiencyClass': [4, obj_energyEfficiencyClass_mapping],
 }
 
 input_sliders = {
@@ -56,8 +111,8 @@ input_sliders = {
 }
 
 input_checks = {
-	'obj_courtage': False,
-	'obj_cellar': True
+	#'obj_courtage': False,
+	'obj_cellar': True,
 }
 
 macro_cols = ['bus_count', 'food_count', 'gdp_per_hab',
