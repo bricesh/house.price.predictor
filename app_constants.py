@@ -117,7 +117,7 @@ input_checks = {
 #	'percent_floor_use_industry_commerce', 'percent_floor_use_leisure', 'density',
 #	'ppl_per_building', 'highrise_factor', 'distance', 'new_apartment_permit_per_hab']
 
-HOUSE_PRICE_INDEX = 1.1
+HOUSE_PRICE_INDEX = 1.03
 
 energy_rating_mapping = {
 	'A_PLUS': 59,
