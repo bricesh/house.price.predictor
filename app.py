@@ -24,7 +24,7 @@ def import_files():
 st.title('German House Price Predictor')
 	
 #import model
-predictor_load = load_smartpredictor('./model/predictor.pkl')
+predictor_load = load_smartpredictor('./model/predictor202104111025.pkl')
 
 #import necessary files
 osm_count, population, master, geo = import_files()
@@ -44,16 +44,16 @@ for check_name, check_value in aconst.input_checks.items():
 obj_data['obj_energyEfficiencyClass'] = aconst.energy_rating_mapping[aconst.obj_energyEfficiencyClass_mapping[obj_data['obj_energyEfficiencyClass']]]
 obj_data['obj_condition'] = aconst.condition_mapping[aconst.obj_condition_mapping[obj_data['obj_condition']]]
 obj_data['obj_interiorQual'] = aconst.interior_condition_mapping[aconst.obj_interiorQual_mapping[obj_data['obj_interiorQual']]]
-
-obj_data['obj_heatingType'] = aconst.obj_heatingType_mapping[obj_data['obj_heatingType']]
-obj_data['obj_buildingType'] = aconst.obj_buildingType_mapping[obj_data['obj_buildingType']]
+obj_data['obj_heatingType'] = aconst.heating_mapping[aconst.obj_heatingType_mapping[obj_data['obj_heatingType']]]
+obj_data['obj_buildingType'] = aconst.building_type_mapping[aconst.obj_buildingType_mapping[obj_data['obj_buildingType']]]
 obj_data['obj_courtage'] = False
 
 macro_data = pd.merge(pd.merge(pd.merge(osm_count, master, on="geo_plz"), geo, on="geo_plz"), population, on="geo_plz")
 macro_data['density'] = macro_data['einwohner'] / (macro_data['area'] * 1000)
-macro_data = macro_data[macro_data['geo_plz'] == geo_plz][aconst.macro_cols].to_dict(orient='records')[0]
+macro_data = macro_data[macro_data['geo_plz'] == geo_plz].to_dict(orient='records')[0]
 data_to_predict = {**obj_data, **macro_data}
-print(data_to_predict)
+data_to_predict = {x:data_to_predict[x] for x in data_to_predict if x in aconst.feature_dict}
+#print(data_to_predict)
 predictor_load.add_input(x=data_to_predict)
 
 detailed_contributions = predictor_load.detail_contributions()
