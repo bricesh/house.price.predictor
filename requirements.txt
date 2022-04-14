@@ -1,5 +1,5 @@
 shapash==1.2.0
 plotly==4.12.0
 pandas==1.2.1
-streamlit==0.79.0
+streamlit
 catboost==0.24.4
